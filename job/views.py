@@ -1,3 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render,Http404,HttpResponse
 
-# Create your views here.
+
+def job_list(request):
+    pass
+
+
+
+def job_detail(request,id):
+    pass
