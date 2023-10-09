@@ -40,4 +40,15 @@ class Category(models.Model):
         return str(self.name)
 
 
+class Applay(models.Model):
+    job = models.ForeignKey(Job,related_name='applay_job',on_delete=models.CASCADE)
+    name= models.CharField(max_length=80)
+    email=models.EmailField()
+    website = models.URLField()
+    cv = models.FileField(upload_to='applay/')
+    cover_letter = models.TextField(max_length=200)
+    created_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return str(self.name)
 

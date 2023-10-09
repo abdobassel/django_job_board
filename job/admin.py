@@ -10,4 +10,7 @@ class jobAdmin(admin.ModelAdmin):
 @admin.register(Category)
 class CatgegoryAdmin(admin.ModelAdmin):
     list_display = ['name','id']
-    
+
+@admin.register(Applay)
+class ApplayAdmin(admin.ModelAdmin):
+    list_display = ['name','job','cv']
