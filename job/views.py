@@ -18,7 +18,7 @@ def job_list(request):
 
 
 
-def job_detail(request,id):
-    job_detail = get_object_or_404( Job,id=id)
+def job_detail(request,slug,id):
+    job_detail = get_object_or_404( Job,slug=slug ,id=id)
     context = {'job':job_detail}
     return render(request, 'job/job_detail.html',context)

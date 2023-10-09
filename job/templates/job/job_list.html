@@ -111,14 +111,7 @@
                                 <h4>Job Listing</h4>
                             </div>
                             <div class="col-md-6">
-                                <div class="serch_cat d-flex justify-content-end">
-                                    <select>
-                                        <option data-display="Most Recent">Most Recent</option>
-                                        <option value="1">Marketer</option>
-                                        <option value="2">Wordpress </option>
-                                        <option value="4">Designer</option>
-                                    </select>
-                                </div>
+
                             </div>
                         </div>
                     </div>
@@ -134,7 +127,7 @@
                                         <img style="width: 50px;height:50px" src="{{job.image.url}}" alt="">
                                     </div>
                                     <div class="jobs_conetent">
-                                        <a href="{% url 'jobs:job_detail' job.id %}">
+                                        <a href="{% url 'jobs:job_detail' job.slug job.id %}">
                                             <h4>{{job.title}}</h4>
                                         </a>
                                         <div class="links_locat d-flex align-items-center">
@@ -150,7 +143,8 @@
                                 <div class="jobs_right">
                                     <div class="apply_now">
                                         <a class="heart_mark" href="#"> <i class="fa fa-heart"></i> </a>
-                                        <a href="{% url 'jobs:job_detail' job.id %}" class="boxed-btn3">Apply Now</a>
+                                        <a href="{% url 'jobs:job_detail' job.slug job.id %}" class="boxed-btn3">Apply
+                                            Now</a>
                                     </div>
                                     <div class="date">
                                         <p>{{job.published_at|date:'d M o :D'}}</p>
