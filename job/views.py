@@ -1,7 +1,8 @@
-from django.shortcuts import render,Http404,HttpResponse,get_object_or_404
+from django.shortcuts import render,Http404,HttpResponse,get_object_or_404,redirect
 from .models import *
 from django.core.paginator import Paginator,Page,PageNotAnInteger
-from .forms import ApplayForm
+from .forms import ApplayForm, JobForm
+from django.urls import reverse
 
 def job_list(request):
     job_list =Job.objects.all()
@@ -36,3 +37,21 @@ def job_detail(request,slug,id):
 
     context = {'job':job_detail,'form':form}
     return render(request, 'job/job_detail.html',context)
+
+
+def add_job(request):
+
+    if request.method == 'POST':
+        form = JobForm(request.POST, request.FILES)
+        if form.is_valid():
+            myform = form.save(commit=False)
+            myform.owner = request.user
+            myform.save()
+            return redirect(reverse('jobs:job_list'))
+            #reverse(urlnames)
+
+    
+    else:
+        form = JobForm()
+    context = {'form':form}
+    return render(request, 'job/add_job.html',context)

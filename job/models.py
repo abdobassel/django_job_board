@@ -1,11 +1,13 @@
 from django.db import models
 from django.utils.text import slugify
+from django.contrib.auth.models import User
 
 # Create your models here.
 class Job(models.Model):
     job_choices = [('Fulltime','Fulltime'),
                     ('Parttime','Parttime'),
     ]
+    owner = models.ForeignKey(User,related_name="job_owner",on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
     job_type = models.CharField(max_length=50,choices=job_choices,default='')
     description = models.TextField(max_length=3000,null=True,blank=True)
