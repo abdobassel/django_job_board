@@ -57,5 +57,3 @@ def add_job(request):
     return render(request, 'job/add_job.html',context)
 
 
-def signup(request):
-    return render(request, 'signup.html')

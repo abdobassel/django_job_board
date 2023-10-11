@@ -1,0 +1,15 @@
+{% extends "registration/base_generic.html" %}
+{% block title %}Log-in{% endblock %}
+{% block content %}
+<h1>SignUp</h1>
+
+
+<div class="login-form">
+    <form class="form_group" action="" method="post">
+        {{ form.as_p }}
+        {% csrf_token %}
+        <input class="form-control" type="hidden" name="next" value="{{ next }}" />
+        <p><input type="submit" class="boxed-btn3 w-100" value="signup"></p>
+    </form>
+</div>
+{% endblock %}
