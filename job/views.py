@@ -55,3 +55,7 @@ def add_job(request):
         form = JobForm()
     context = {'form':form}
     return render(request, 'job/add_job.html',context)
+
+
+def signup(request):
+    return render(request, 'signup.html')
