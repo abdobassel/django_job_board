@@ -2,17 +2,22 @@ from django.shortcuts import render,Http404,HttpResponse,get_object_or_404,redir
 from .models import *
 from django.core.paginator import Paginator,Page,PageNotAnInteger
 from .forms import ApplayForm, JobForm
+
 from django.urls import reverse
+from django.contrib.auth.decorators import login_required
+from .filters import JobFilter
 
 def job_list(request):
     job_list =Job.objects.all()
-    
+    #my filter in jobs_list
+    myfilter = JobFilter(request.GET, queryset=job_list)
+    job_list = myfilter.qs
 
     paginator = Paginator(job_list, 3)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     
-    context = {'jobs':page_obj}
+    context = {'jobs':page_obj,'myfilter':myfilter}
 
 
     return render(request, 'job/job_list.html',context)
@@ -38,7 +43,7 @@ def job_detail(request,slug,id):
     context = {'job':job_detail,'form':form}
     return render(request, 'job/job_detail.html',context)
 
-
+@login_required
 def add_job(request):
 
     if request.method == 'POST':
