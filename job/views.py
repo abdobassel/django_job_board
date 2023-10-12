@@ -9,6 +9,8 @@ from .filters import JobFilter
 
 def job_list(request):
     job_list =Job.objects.all()
+    #count jobs results number
+    jobs_count = job_list.count()
     #my filter in jobs_list
     myfilter = JobFilter(request.GET, queryset=job_list)
     job_list = myfilter.qs
@@ -17,7 +19,7 @@ def job_list(request):
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     
-    context = {'jobs':page_obj,'myfilter':myfilter}
+    context = {'jobs_count':jobs_count,'jobs':page_obj,'myfilter':myfilter}
 
 
     return render(request, 'job/job_list.html',context)
