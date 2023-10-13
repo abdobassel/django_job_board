@@ -12,4 +12,7 @@ urlpatterns = [
    #apis
    path('api/all_jobs_api',api.api_job_list,name='all_jobs_api'),
    path('api/job_detail_api/<int:id>',api.api_job_detail,name='job_detail'),
+   #generic api vewis
+   path('api/v2/all_jobs_api',api.JobListApi.as_view(),name='job_list_veiw'),
+   path('api/v2/all_jobs_api/job_detail/<int:id>',api.JobDetailApi.as_view(),name='job_detail_view'),
 ]
